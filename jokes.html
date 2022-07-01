@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Jokes -using API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image:  url('https://media.giphy.com/media/OK5LK5zLFfdm/giphy.gif');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center; 
+        }
+        .container-fluid{
+            position: relative;
+            margin: 6rem;
+            max-width: 40rem;
+            height: 30rem;
+            background-color: #000; 
+            background-image: url('https://media.giphy.com/media/rRKcpDgvYNpEk/giphy.gif'); 
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .joke{
+            position: absolute;
+            width: 17rem;
+            height: 15rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            /* background-image: url('https://media.giphy.com/media/USR9bpLz893PYVHk7C/giphy.gif');
+            background-repeat: no-repeat;
+            background-size: cover;            background-position: center center; */
+            border-radius: 10px;
+            margin: 30% 25% 25%;
+        }
+        .joke p{
+            margin-top: 10rem;
+            /* color: black; */
+            padding: 2rem;
+            background: -webkit-linear-gradient(90deg,orange, yellow,rgb(41, 101, 138));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        .btn{
+                margin-top: 0.3rem;
+                color: #255784;
+                background-color: #2196f3;
+                box-shadow:  0 0 10px #2196f3;
+                border: none;
+                padding: 5px 5px;
+                border-radius: 1.5rem;
+                position: absolute;
+                bottom: 2rem;
+                right: 45%;
+        }
+        @media screen and (max-width: 576px) { 
+            .btn{
+                position: absolute;
+                bottom: 2rem;
+                right: 30%;
+            }
+        .joke p{
+            margin-top: 10rem;
+            /* color: black; */
+            padding: 3rem;
+            font-weight: 700;
+        }
+         }
+
+    </style>
+</head>
+<body>
+    <div class="container-fluid animated">
+        <!-- <h3>👌 Best Jokes to make your day 😂</h3> -->
+        <div  class="joke"><p id="joke">loading.... 👻👻</p>
+        </div>
+        <button id="jokeBtn" class="btn">Next Joke</button>
+    </div>
+</body>
+<script>
+    // Using Promises
+    // GET https://icanhazdadjoke.com/
+    const jokes = document.querySelector("#joke");
+    const jokesBtn = document.querySelector("#jokeBtn");
+
+//     const generateJokes = () => {
+//         const setHeader = {
+//         headers: {
+//             accept: 'application/json',
+//         }
+//     }
+//     fetch('https://icanhazdadjoke.com/', setHeader).then((res) => res.json()).then((data) => {
+//                 jokes.innerHTML = data.joke;
+//     })
+//     .catch((error)=> {
+//         console.log(error);
+//     })
+// }
+// jokesBtn.addEventListener('click',generateJokes);
+// generateJokes();
+
+ // USING ASYNC WAIT 
+
+const generateJokes = async () => {
+        try {
+            const setHeader = {
+        headers: {
+            accept: 'application/json',
+        }
+    }
+    const res = await fetch('https://icanhazdadjoke.com/', setHeader);
+    const data = await res.json(); 
+    jokes.innerHTML = data.joke;
+}
+catch(err) { 
+    console.log(`The error is ${err0}`);
+}
+  }
+jokesBtn.addEventListener('click',generateJokes);
+generateJokes();
+</script>
+</html>
